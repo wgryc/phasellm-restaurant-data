@@ -65,24 +65,33 @@ def parse_lines(content, results):
 
     This function parses the output above into a set of dictionary objects and appends it back into the results object.
     """
+    if results is None:
+        results = {}
+
     lines = content.split("\n")
-    if len(lines) > 1:
-        for i in range(0, len(lines)):
-            line = lines[i].strip()
-            if len(line.strip()) > 0:
-                if line[0:4] == "NAME":
-                    restaurant_name = line[6:].strip()
-                    if restaurant_name not in results:
-                        results[restaurant_name] = {
-                            "name": restaurant_name,
-                            "description": "",
-                            "count": 1,
-                        }
-                    else:
-                        results[restaurant_name]["count"] += 1
-                    desc = lines[i + 1][13:].strip()
-                    if len(desc) > 0:
-                        results[restaurant_name]["description"] += "- " + desc + "\n"
+    for i in range(len(lines)):
+        line = lines[i].strip()
+        if line and line.startswith("NAME"):
+            restaurant_name = line[6:].strip()
+            
+            if restaurant_name not in results:
+                results[restaurant_name] = {
+                    "name": restaurant_name,
+                    "description": "",
+                    "count": 1,
+                }
+            else:
+                results[restaurant_name]["count"] += 1
+            
+            if i + 1 < len(lines):
+                desc = lines[i + 1][13:].strip()
+            else:
+                # Handle the case where i + 1 is out of range
+                desc = ""
+
+            if desc:
+                results[restaurant_name]["description"] += f"- {desc}\n"
+
     return results
 
 
