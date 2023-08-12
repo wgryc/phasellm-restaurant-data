@@ -28,6 +28,7 @@ queries = [
 
 # OpenAI API Key; we use GPT-4 in this demo
 openai_key = "YOUR OPENAI API KEY"
+openai_key = openai_key
 
 # Google API Key for using its web search components + a search ID
 # Our search ID has a global web context; i.e., we simply use the base Google search offering

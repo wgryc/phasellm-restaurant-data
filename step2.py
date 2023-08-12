@@ -98,7 +98,12 @@ cp = ChatPrompt(
         {"role": "user", "content": message_prompt_2},
     ]
 )
-llm = OpenAIGPTWrapper(openai_key, model="gpt-4")
+
+
+#use GPT-3.5 for faster results and reduce likelidhood of timeouts, gpt-4 is more accurate but slower
+llm = OpenAIGPTWrapper(openai_key, model="gpt-3.5-turbo-16k") 
+#llm = OpenAIGPTWrapper(openai_key, model="gpt-4") 
+
 cb = ChatBot(llm)
 
 # Load results from step1.py
