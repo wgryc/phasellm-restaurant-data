@@ -144,8 +144,8 @@ for r in results:
     parsed = parse_lines(response, parsed)
 
     # We sleep for 30 seconds to avoid overloading the ChatGPT API.
-    print("Complete. Waiting for next piece of content...")
-    time.sleep(30)
+    #print("Complete. Waiting for next piece of content...")
+    #time.sleep(30)
 
 # Save results to JSON.
 with open("parsed.json", "w") as writer:
