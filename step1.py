@@ -11,6 +11,11 @@ This file is step1.py
 Questions? Please reach out: w --at-- phaseai --dot-- com
 """
 
+import json
+from phasellm.agents import WebSearchAgent
+from itertools import chain
+from apikeys import *
+
 ###
 # The queries we want to run; this can work on any sort of restaurant
 queries = [
@@ -24,19 +29,12 @@ queries = [
 ]
 
 ###
-# Your API keys and settings.
+# Your API keys and settings. To protect your keys and search ID, we recommend storing them in a separate file and importing them.
 
-# OpenAI API Key; we use GPT-4 in this demo
-openai_key = "YOUR OPENAI API KEY"
+openai_key = openai_key
+google_api_key = google_api_key
+search_id = search_id
 
-# Google API Key for using its web search components + a search ID
-# Our search ID has a global web context; i.e., we simply use the base Google search offering
-google_api_key = "YOUR GOOGLE API KEY"
-search_id = "YOUR GOOGLE API SEARCH ID"
-
-import json
-from phasellm.agents import WebSearchAgent
-from itertools import chain
 
 # Instantiate the PhaseLLM WebSearchAgent
 w = WebSearchAgent(api_key=google_api_key)
